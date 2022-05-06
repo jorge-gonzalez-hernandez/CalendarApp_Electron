@@ -1,0 +1,47 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(100px, 1fr));
+    color: white;
+    gap: 5px;
+    height: auto;
+}
+
+#main {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 200px repeat(3, minmax(300px, 1fr));
+    grid-template-rows: 40px auto;
+}
+
+.calendar-container {
+    grid-template-rows: repeat(5, 1fr);
+}
+
+.container:nth-child(1) {
+    grid-row: span 2;
+}
+
+.grid-col-span-3 {
+    grid-column: span 3;
+}
+
+
+
+
+
+.month-grid-element {
+    border: none;
+    border-top: 1px solid grey;
+    background-color: rgb(21, 21, 21);
+}
+
+.weekend-element {
+    border: none;
+    border-top: 1px solid grey;
+    background-color: rgb(38, 38, 38);
+}
+
+body {
+    background-color: rgb(37, 37, 37);
+    overflow-x: hidden;
+}

@@ -1,0 +1,21 @@
+html
+    head
+        title Calendar App
+        style
+            include ../../CSS/month.css
+        script(src = "../../JS/month.js")
+body(onload = "init()")
+    //include ../partials/header
+
+    div#main 
+        div(class="container")    
+            include ../partials/nav
+        div(class = "grid-container container grid-col-span-3")
+            p Sunday 
+            p Monday 
+            p Tuesday 
+            p Wednesday 
+            p Thursday 
+            p Friday 
+            p Saturday
+        div(id = "month-grid-container" class="container grid-col-span-3 calendar-container grid-container")
