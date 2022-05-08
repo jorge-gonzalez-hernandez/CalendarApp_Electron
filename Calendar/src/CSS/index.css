@@ -1,7 +1,18 @@
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif;
-  margin: auto;
-  max-width: 38rem;
-  padding: 2rem;
+#main {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 200px repeat(3, minmax(300px, 1fr));
+  grid-template-rows: 40px auto;
+}
+
+.container:nth-child(1) {
+  grid-row: span 2;
+}
+
+.row1 {
+  grid-row: 1;
+}
+
+.row2 {
+  grid-row: 2;
 }

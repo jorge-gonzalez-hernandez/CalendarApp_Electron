@@ -1,0 +1,13 @@
+{"January":{"events":{}, "daysInMonth":31},
+    "February":{"events":{}, "daysInMonth":28},
+    "March":{"events":{}, "daysInMonth":31},
+    "April":{"events":{}, "daysInMonth":30},
+    "May":{"events":{}, "daysInMonth":31},
+    "June":{"events":{}, "daysInMonth":30},
+    "July":{"events":{}, "daysInMonth":31},
+    "August":{"events":{}, "daysInMonth":31},
+    "September":{"events":{}, "daysInMonth":30},
+    "October":{"events":{}, "daysInMonth":31},
+    "November":{"events":{}, "daysInMonth":30},
+    "December":{"events":{}, "daysInMonth":31}
+}

@@ -3,33 +3,12 @@ const path = require('path');
 
 const setupPug = require('electron-pug')
 
+
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   // eslint-disable-line global-require
   app.quit();
 }
-
-// const createWindow = () => {
-//   // Create the browser window.
-//   const mainWindow = new BrowserWindow({
-//     width: 800,
-//     height: 600,
-//     webPreferences: {
-//       nodeIntegration: true,
-//     }
-//   });
-
-//   // and load the index.html of the app.
-//   mainWindow.loadFile(path.join(__dirname, '../HTML/index.html'));
-
-//   // Open the DevTools.
-//   //mainWindow.webContents.openDevTools();
-// };
-
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-//app.on('ready', createWindow);
 
 app.on('ready', async () => {
   try {
@@ -39,8 +18,9 @@ app.on('ready', async () => {
     // Could not initiate 'electron-pug'
   }
  
-  let mainWindow = new BrowserWindow({ width: 800, height: 600,  webPreferences: {
+  let mainWindow = new BrowserWindow({ width: 1700, height: 900,  webPreferences: {
           nodeIntegration: true,
+          contextIsolation: false,
         }})
  
   mainWindow.loadFile(path.join(__dirname, '../views/pages/index.pug'));

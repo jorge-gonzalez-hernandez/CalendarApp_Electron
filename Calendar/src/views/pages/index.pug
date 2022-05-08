@@ -2,11 +2,9 @@ html
     head
         title Calendar App
         style
-            //include ../../CSS/home.css
+            include ../../CSS/index.css
 body
-    //include ../partials/header
-
     div#main
-        h1 Welcome to the Home Page!
-        br
-        a(href="month.pug") Month
+        div(class="container")
+            include ../partials/nav
+        div(class="container")

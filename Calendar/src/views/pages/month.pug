@@ -10,6 +10,10 @@ body(onload = "init()")
     div#main 
         div(class="container")    
             include ../partials/nav
+        div(class="container grid-col-span-3 flex")
+            button(onclick="showPrevMonth()") Left
+            p(id = "month-id") 
+            button(onclick="showNextMonth()") Right
         div(class = "grid-container container grid-col-span-3")
             p Sunday 
             p Monday 

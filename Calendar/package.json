@@ -47,6 +47,7 @@
   "dependencies": {
     "electron-pug": "^2.0.0",
     "electron-squirrel-startup": "^1.0.0",
+    "electron-storage": "^1.0.7",
     "realm": "^10.16.0"
   },
   "devDependencies": {

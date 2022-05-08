@@ -1,7 +1,14 @@
 #header p {
     color: white;
+    margin: 0;
 }
 
 #header a {
+    margin: 0;
     color: white;
+}
+#header {
+    background-color: rgb(37, 37, 37);
+    margin: 0;
+
 }

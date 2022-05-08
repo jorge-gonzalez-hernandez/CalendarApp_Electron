@@ -2,45 +2,92 @@
     display: grid;
     grid-template-columns: repeat(7, minmax(100px, 1fr));
     color: white;
-    gap: 5px;
     height: auto;
+    background-color: rgb(21, 21, 21);
 }
 
 #main {
     height: 100%;
     display: grid;
     grid-template-columns: 200px repeat(3, minmax(300px, 1fr));
-    grid-template-rows: 40px auto;
+    grid-template-rows: 20px 40px auto;
 }
 
 .calendar-container {
-    grid-template-rows: repeat(5, 1fr);
+    grid-auto-rows: minmax(100px, auto);
 }
 
 .container:nth-child(1) {
-    grid-row: span 2;
+    grid-row: span 3;
 }
 
 .grid-col-span-3 {
     grid-column: span 3;
 }
 
-
-
-
-
 .month-grid-element {
     border: none;
-    border-top: 1px solid grey;
+    border-top: 1px solid rgb(96, 96, 96);
     background-color: rgb(21, 21, 21);
+    padding: 0;
 }
-
+    
 .weekend-element {
-    border: none;
-    border-top: 1px solid grey;
     background-color: rgb(38, 38, 38);
 }
 
+.current-week {
+    border-top: 3px solid rgb(101, 0, 0);
+    color: white;
+}
+
+
+
+.not-current-month p {
+    color: rgb(159, 159, 159);
+}
+
+.current-date {
+    border-top: 3px solid red;
+}
+
+.current-date p {
+    color: red;
+}
+
+.month-grid-element p {
+    margin: 3%;
+}
+
+.flex {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.flex p {
+    margin: 0;
+    color: white;
+}
+
+.flex * {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#month-id {
+    width: 150px;
+    text-align: center;
+}
+
+.event {
+    color: rgb(174, 174, 26);
+}
+
+.event-selected {
+    background-color: rgb(174, 174, 26);
+    color: white;
+}
 body {
     background-color: rgb(37, 37, 37);
     overflow-x: hidden;
