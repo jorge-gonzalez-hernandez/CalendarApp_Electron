@@ -11,9 +11,11 @@ body(onload = "init()")
         div(class="container")    
             include ../partials/nav
         div(class="container grid-col-span-3 flex")
-            button(onclick="showPrevMonth()") Left
+            div(class = "arrow arrow-left flex" onclick="showPrevMonth()")
+                img(src="../../data/left-arrow.png")
             p(id = "month-id") 
-            button(onclick="showNextMonth()") Right
+            div(class = "arrow arrow-right flex" onclick="showNextMonth()")
+                img(src="../../data/right-arrow.png")
         div(class = "grid-container container grid-col-span-3")
             p Sunday 
             p Monday 

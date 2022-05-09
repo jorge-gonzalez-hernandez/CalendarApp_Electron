@@ -10,7 +10,7 @@
     height: 100%;
     display: grid;
     grid-template-columns: 200px repeat(3, minmax(300px, 1fr));
-    grid-template-rows: 20px 40px auto;
+    grid-template-rows: 30px 40px auto;
 }
 
 .calendar-container {
@@ -68,6 +68,9 @@
 .flex p {
     margin: 0;
     color: white;
+    font-size: 20px;
+        padding: 0;
+        text-align: center;
 }
 
 .flex * {
@@ -88,6 +91,18 @@
     background-color: rgb(174, 174, 26);
     color: white;
 }
+.arrow {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.arrow:hover {
+    cursor: pointer;
+}
+
+.arrow-right {}
+
+.arrow-left {}
 body {
     background-color: rgb(37, 37, 37);
     overflow-x: hidden;
