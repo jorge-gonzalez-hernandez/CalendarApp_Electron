@@ -14,7 +14,7 @@ let daysToAddEnd;
 let prevMonth = {month: 0, daysInMonth: 0, year: 0};
 let nextMonth;
 
-let eventsSelected = []; //stores a collection of currently selected events
+let currSelectedEvent = []; //stores a collection of currently selected events
 
 function init(){
     todayDate = new Date();
@@ -115,20 +115,45 @@ function showNextMonth(){
 
 function unfocus(){
     console.log("in unfocus");
-    for(let i = 0; i < eventsSelected.length; i++){
-        document.getElementById(eventsSelected[i]).classList.remove("event-selected");
+    console.log(currSelectedEvent.length);
+    for(let i = 0; i < currSelectedEvent.length; i++){
+        document.getElementById(currSelectedEvent[i]).classList.toggle("event-selected");
     }
+    currSelectedEvent = [];
 }
 
+//stores the amount of events for a given date
 let eventCounter = 1;
 function addEventToCalendar(id){
+    unfocus();
     console.log("in elem1");
     let div = document.createElement("div");
-    div.innerText = "New Event";
     div.setAttribute("id", id +"e"+eventCounter);
-    div.setAttribute("class", "event");
+    div.classList.add("event");
+
+    //selects element from the start
+    div.classList.add("event-selected");
+    currSelectedEvent.push(id +"e"+eventCounter);
+
+    //draggable 
+    div.setAttribute("draggable", "true");
+
+    //events listeners for the specific event
     div.addEventListener("dblclick",eventDblClicked, false);
     div.addEventListener("click",eventSelected, false);
+    div.addEventListener("dragstart",dragStart, false);
+
+    let p = document.createElement("p");
+    p.innerText = "New Event";
+    p.setAttribute("class","event-name");
+    let time = document.createElement("p");
+    time.innerText = "2:35 PM"; 
+    time.setAttribute("class","event-time");
+    let circle = document.createElement("div");
+    circle.setAttribute("class","circle");
+    div.appendChild(circle);
+    div.appendChild(p);
+    div.appendChild(time);
     document.getElementById(id).appendChild(div);
     eventCounter++;
 }
@@ -139,15 +164,28 @@ function eventDblClicked(e){
 }
 
 function eventSelected(e){
-    console.log(e.ctrlKey);
-    if(e.ctrlKey){
+    console.log(e.target.id);
+    if(e.ctrlKey){//ctrl key was used
+        document.getElementById(e.target.id).classList.add("event-selected");
+        currSelectedEvent.push(e.target.id);
     }else{
-
+        unfocus();
+        document.getElementById(e.target.id).classList.add("event-selected");
+        currSelectedEvent.push(e.target.id);
     }
-    document.getElementById(e.target.id).classList.add("event-selected");
-    eventsSelected.push(e.target.id);
     e.stopPropagation();
 }
+
+//NOTE: try to add support for dragging multiple elements
+function dragStart(e){
+    unfocus();
+    document.getElementById(e.target.id).classList.add("event-selected");
+    currSelectedEvent.push(e.target.id);
+    console.log(e.target.id);
+    e.dataTransfer.setData('text/plain',e.target.id);
+    e.stopPropagation();
+}
+
 
 function displayMonthGrid(){
     document.getElementById("month-grid-container").innerHTML = "";
@@ -196,6 +234,9 @@ function displayMonthGrid(){
             let p = document.createElement("p");
             p.innerText = ((prevMonth.daysInMonth - daysToAddBeginning + 1) + i);
             div.appendChild(p);
+            div.addEventListener("dragenter", dragEnter,false);
+            div.addEventListener("dragover", dragOver,false);
+            div.addEventListener("drop", drop,false);
             document.getElementById("month-grid-container").appendChild(div);
         }else if(i > (daysToAddBeginning + daysInMonth)){ //next month
             let div = document.createElement("div");
@@ -218,6 +259,9 @@ function displayMonthGrid(){
             let p = document.createElement("p");
             p.innerText = tempCounter;
             div.appendChild(p);
+            div.addEventListener("dragenter", dragEnter,false);
+            div.addEventListener("dragover", dragOver,false);
+            div.addEventListener("drop", drop,false);
             document.getElementById("month-grid-container").appendChild(div);
             tempCounter++;
         }else{ //current month
@@ -246,10 +290,30 @@ function displayMonthGrid(){
                 let p = document.createElement("p");
                 p.innerText = tempCurrentMonthCounter;
                 div.appendChild(p);
+                div.addEventListener("dragenter", dragEnter,false);
+                div.addEventListener("dragover", dragOver,false);
+                div.addEventListener("drop", drop,false);
                 document.getElementById("month-grid-container").appendChild(div);
                 tempCurrentMonthCounter++;
             }
         }
         
+    }
+
+    function drop(e){
+        console.log(e.target.id);
+        const id = e.dataTransfer.getData('text/plain');
+        const draggable = document.getElementById(id);
+
+        e.target.appendChild(draggable);
+        e.stopPropagation();
+    }
+
+    function dragEnter(e){
+        e.preventDefault();
+    }
+
+    function dragOver(e){
+        e.preventDefault();
     }
 }
