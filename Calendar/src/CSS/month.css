@@ -1,3 +1,12 @@
+:root {
+    --event-color: rgb(174, 174, 26);
+    --event-popup-position: fixed;
+    --event-popup-top: 100;
+    --event-popup-left: 766;
+    --event-popup-height: 500px;
+    --event-popup-width: 368px;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(7, minmax(100px, 1fr));
@@ -7,6 +16,7 @@
 }
 
 #main {
+    user-select: none;
     height: 100%;
     display: grid;
     grid-template-columns: 200px repeat(3, minmax(300px, 1fr));
@@ -89,8 +99,9 @@
     text-align: center;
 }
 
+/*event*/
 .event {
-    color: rgb(174, 174, 26);
+    color: var(--event-color);
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -98,9 +109,9 @@
     -webkit-user-drag: true;
 }
 
+
 .event * {
     pointer-events: none;
-    user-select: none;
     margin: 0;
 }
     
@@ -128,7 +139,7 @@
 }
 
 .event-selected {
-    background-color: rgb(174, 174, 26);
+    background-color: var(--event-color);
     
 }
 
@@ -152,6 +163,22 @@
 .arrow-right {}
 
 .arrow-left {}
+
+/*event popup*/
+.event-popup-hidden{
+    display: none;
+}
+
+.event-popup{
+    position: var(--event-popup-position);
+    top: var(--event-popup-top);
+    left: var(--event-popup-left);
+    border: 1px solid white;
+    width: var(--event-popup-width);
+    height: var(--event-popup-height);
+    background-color: rgb(39, 36, 36);;
+    color: white;
+}
 
 body {
     background-color: rgb(37, 37, 37);

@@ -59,7 +59,6 @@ function getCurrentWeek(){
     if(!showingTodayMonth){
        return; 
     }
-    console.log("past if");
     //today.getDate() - today.getDay()
     for(let i = 0; i < 7; i++){
         todayWeek.range.push(new Date(todayDate.getFullYear(), todayDate.getMonth(), (todayDate.getDate() - todayDate.getDay()) + i).getDate());
@@ -113,20 +112,19 @@ function showNextMonth(){
     showCurrentMonth();
 }
 
+/* when document is clicked */
 function unfocus(){
-    console.log("in unfocus");
-    console.log(currSelectedEvent.length);
     for(let i = 0; i < currSelectedEvent.length; i++){
         document.getElementById(currSelectedEvent[i]).classList.toggle("event-selected");
     }
     currSelectedEvent = [];
+    closeEventPopup();
 }
 
 //stores the amount of events for a given date
 let eventCounter = 1;
 function addEventToCalendar(id){
     unfocus();
-    console.log("in elem1");
     let div = document.createElement("div");
     div.setAttribute("id", id +"e"+eventCounter);
     div.classList.add("event");
@@ -155,16 +153,16 @@ function addEventToCalendar(id){
     div.appendChild(p);
     div.appendChild(time);
     document.getElementById(id).appendChild(div);
+    openEventPopup(id +"e"+eventCounter);
     eventCounter++;
 }
 
 function eventDblClicked(e){
     e.stopPropagation();
-
+    openEventPopup(e.target.id);
 }
 
 function eventSelected(e){
-    console.log(e.target.id);
     if(e.ctrlKey){//ctrl key was used
         document.getElementById(e.target.id).classList.add("event-selected");
         currSelectedEvent.push(e.target.id);
@@ -176,12 +174,64 @@ function eventSelected(e){
     e.stopPropagation();
 }
 
+/* opens the the popup to add an event, id => the id of the event */
+function openEventPopup(id){
+    setEventPopupLocation(document.getElementById(id).getBoundingClientRect(), document.getElementById(id).clientWidth);
+    document.getElementById("event-popup").classList.remove("event-popup-hidden");
+}
+/* closes the the popup to add an event */
+function closeEventPopup(){
+    document.getElementById("event-popup").classList.add("event-popup-hidden");
+}
+
+/* Sets the colour of the specific event */
+function setEventColor(){
+
+}
+
+/* Sets the location of the event popup depending where the event is on the page */
+function setEventPopupLocation(offsets, width){
+    
+    let r = document.querySelector(':root');
+
+    let rs = getComputedStyle(r);
+
+    let eventPopupWidth = strip(rs.getPropertyValue('--event-popup-width'));
+    let eventPopupHeight = strip(rs.getPropertyValue('--event-popup-height'));
+    
+
+    let popupLeft = width + offsets.left;
+    let popupTop = offsets.top - 40;
+    
+
+    if(((window.innerHeight - popupTop) < eventPopupHeight) && ((window.innerWidth - popupLeft) < eventPopupWidth)){//checking if event is too low AND too right so event-popup needs to display higher and on left side of event
+        popupTop = window.innerHeight - eventPopupHeight - 15;
+        popupLeft = popupLeft - width - eventPopupWidth;
+    }else if((window.innerHeight - popupTop) < eventPopupHeight){//checking if event is too low so event-popup needs to display higher
+        popupTop = window.innerHeight - eventPopupHeight - 15;
+    }else if((window.innerWidth - popupLeft) < eventPopupWidth){//checking if event is too right so event-popup needs to display left
+        popupLeft = popupLeft - width - eventPopupWidth;
+    }
+
+    
+
+    r.style.setProperty('--event-popup-top', popupTop);
+    r.style.setProperty('--event-popup-left', popupLeft);
+
+}
+
+/* strips a string that has units and returns the value, characters => is what is needed to be removed, string => being removed from */
+function strip(string){
+    if(string.includes("px")){
+        return parseInt((string.slice(0, string.length - 2)).trim());
+    } 
+}
+
 //NOTE: try to add support for dragging multiple elements
 function dragStart(e){
     unfocus();
     document.getElementById(e.target.id).classList.add("event-selected");
     currSelectedEvent.push(e.target.id);
-    console.log(e.target.id);
     e.dataTransfer.setData('text/plain',e.target.id);
     e.stopPropagation();
 }
@@ -301,7 +351,6 @@ function displayMonthGrid(){
     }
 
     function drop(e){
-        console.log(e.target.id);
         const id = e.dataTransfer.getData('text/plain');
         const draggable = document.getElementById(id);
 
