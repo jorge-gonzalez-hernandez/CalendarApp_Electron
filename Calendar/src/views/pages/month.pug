@@ -25,7 +25,57 @@ body(onload = "init()")
             p Friday 
             p Saturday
         div(id = "month-grid-container" class="container grid-col-span-3 calendar-container grid-container")
-        div(class="event-popup event-popup-hidden" id="event-popup")
-            h1 Chat 
-            input(id="event-name-input")
-            input(id="event-location-input")
+        div(class="event-popup-hidden event-popup-arrow" id="popup-arrow")
+        div(class="event-popup event-popup-hidden" id="event-popup" onclick = "popupClicked()")
+            div(class="name-of-event")
+                input(id="event-name-input")
+                div(class="circle-container")
+                    div(class='circle event-popup-circle')
+                input(id="event-location-input")
+            div(class="event-details")
+                label all-day
+                input(id="all-day-toggle", type="checkbox")
+                label from
+                input(id="from-date")
+                input(id="from-time")
+                select(class="meridiem" id="from-time-meridiem")
+                    option(value = "am") AM 
+                    option(value = "pm") PM 
+                label to
+                input(id="to-date")
+                input(id="to-time")
+                select(class="meridiem" id="to-time-meridiem")
+                    option(value = "am") AM 
+                    option(value = "pm") PM 
+                label repeat
+                select(id="repeat-dd" class="grid-col-span-3")
+                    option(value="none") None
+                    option(value="day") Every Day
+                    option(value="week") Every Week 
+                    option(value="month") Every Month 
+                    option(value="year") Every Year 
+                    option(value="custom") Custom...
+                label alert
+                select(id="alert-dd" class="grid-col-span-3")
+                    option(value="none") None
+                    option(value="5min") 5 minutes before 
+                    option(value="15min") 15 minutes before 
+                    option(value="30min") 30 minutes before 
+                    option(value="1h") 1 hour before 
+                    option(value="2h") 2 hours before 
+                    option(value="1d") 1 day before 
+                    option(value="2d") 2 days before 
+                    option(value="at-time") At time of event 
+                label invitees
+                input(id="add-invitee" class="grid-col-span-3")
+                label attachments 
+                a(href='index.pug') Add File... 
+                label url 
+                input(id="url" class="grid-col-span-3")
+                label note 
+                input(id="note" class="grid-col-span-3")
+            div(class="cancel-ok") 
+                button Cancel 
+                button OK
+                    
+

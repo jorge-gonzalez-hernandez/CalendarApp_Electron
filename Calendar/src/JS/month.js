@@ -22,6 +22,7 @@ function init(){
     showCurrentMonth();
     //document.onclick = unfocus();
     document.addEventListener("click",unfocus, false);
+    document.getElementById("event-popup").addEventListener("click",popupClicked, false);
 }
 
 function getMonthName(){
@@ -178,10 +179,12 @@ function eventSelected(e){
 function openEventPopup(id){
     setEventPopupLocation(document.getElementById(id).getBoundingClientRect(), document.getElementById(id).clientWidth);
     document.getElementById("event-popup").classList.remove("event-popup-hidden");
+    document.getElementById("popup-arrow").classList.remove("event-popup-hidden");
 }
 /* closes the the popup to add an event */
 function closeEventPopup(){
     document.getElementById("event-popup").classList.add("event-popup-hidden");
+    document.getElementById("popup-arrow").classList.add("event-popup-hidden");
 }
 
 /* Sets the colour of the specific event */
@@ -199,26 +202,53 @@ function setEventPopupLocation(offsets, width){
     let eventPopupWidth = strip(rs.getPropertyValue('--event-popup-width'));
     let eventPopupHeight = strip(rs.getPropertyValue('--event-popup-height'));
     
-
+    //popup
     let popupLeft = width + offsets.left;
     let popupTop = offsets.top - 40;
+    
+    //popup arrow
+    let arrowLeft = width + offsets.left - 20;
+    let arrowTop = offsets.top - 5;
+    let arrowDirection = false; //false -> left, true -> right
     
 
     if(((window.innerHeight - popupTop) < eventPopupHeight) && ((window.innerWidth - popupLeft) < eventPopupWidth)){//checking if event is too low AND too right so event-popup needs to display higher and on left side of event
         popupTop = window.innerHeight - eventPopupHeight - 15;
         popupLeft = popupLeft - width - eventPopupWidth;
+        arrowDirection = true;
+        arrowLeft = arrowLeft - width + 20;
     }else if((window.innerHeight - popupTop) < eventPopupHeight){//checking if event is too low so event-popup needs to display higher
         popupTop = window.innerHeight - eventPopupHeight - 15;
     }else if((window.innerWidth - popupLeft) < eventPopupWidth){//checking if event is too right so event-popup needs to display left
         popupLeft = popupLeft - width - eventPopupWidth;
+        arrowDirection = true;
+        arrowLeft = arrowLeft - width + 20;;
+    }
+    if(arrowDirection){ //arrow is pointing right
+        document.getElementById("popup-arrow").classList.remove("event-popup-arrow-left");
+        document.getElementById("popup-arrow").classList.add("event-popup-arrow-right");
+        console.log("in arrow right");
+    }else{//arrow is pointing left
+        document.getElementById("popup-arrow").classList.remove("event-popup-arrow-right");
+        document.getElementById("popup-arrow").classList.add("event-popup-arrow-left");
+        console.log("in arrow left");
     }
 
-    
+    r.style.setProperty('--event-popup-arrow-top', arrowTop);
+    r.style.setProperty('--event-popup-arrow-left', arrowLeft);
 
     r.style.setProperty('--event-popup-top', popupTop);
     r.style.setProperty('--event-popup-left', popupLeft);
 
 }
+
+function popupClicked(e){
+    if(e){
+        e.stopPropagation();
+    }
+    
+}
+
 
 /* strips a string that has units and returns the value, characters => is what is needed to be removed, string => being removed from */
 function strip(string){
