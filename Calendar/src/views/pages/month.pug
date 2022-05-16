@@ -34,11 +34,11 @@ body(onload = "init()")
                 input(id="event-location-input" placeholder="Location")
             div(class="event-details")
                 label all-day
-                input(id="all-day-toggle", type="checkbox")
-                label from
-                input(id="from-date")
-                input(id="from-time")
-                select(class="meridiem" id="from-time-meridiem")
+                input(id="all-day-toggle", type="checkbox", onclick="allDayClicked()")
+                label(class="negative-bottom-margin") from
+                input(id="from-date" class="negative-bottom-margin")
+                input(id="from-time" class="negative-bottom-margin")
+                select(class="meridiem" id="from-time-meridiem" class="negative-bottom-margin")
                     option(value = "am") AM 
                     option(value = "pm") PM 
                 label to

@@ -307,6 +307,19 @@
     row-gap: 10px;
 }
 
+
+.event-details>label{
+    grid-column: 1;
+    text-align: right;
+    padding-right: 5px;
+}
+
+.negative-bottom-margin{
+    margin-bottom: -7px;
+}
+
+
+
 .event-details>select{
     border-radius: 3px;
     background-color: rgb(51, 48, 48);

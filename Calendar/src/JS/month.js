@@ -250,6 +250,21 @@ function popupClicked(e){
     
 }
 
+function allDayClicked(e){
+    let checkbox = document.getElementById('all-day-toggle');
+    if(checkbox.checked){ //checkbox IS checked
+        document.getElementById('from-time').classList.add('all-day-selected');
+        document.getElementById('from-time-meridiem').classList.add('all-day-selected');
+        document.getElementById('to-time').classList.add('all-day-selected');
+        document.getElementById('to-time-meridiem').classList.add('all-day-selected');
+    }else{ //checkbox is NOT checked
+        document.getElementById('from-time').classList.remove('all-day-selected');
+        document.getElementById('from-time-meridiem').classList.remove('all-day-selected');
+        document.getElementById('to-time').classList.remove('all-day-selected');
+        document.getElementById('to-time-meridiem').classList.remove('all-day-selected');
+    }
+}
+
 
 /* strips a string that has units and returns the value, characters => is what is needed to be removed, string => being removed from */
 function strip(string){
