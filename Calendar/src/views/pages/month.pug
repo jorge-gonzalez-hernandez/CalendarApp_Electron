@@ -28,10 +28,10 @@ body(onload = "init()")
         div(class="event-popup-hidden event-popup-arrow" id="popup-arrow")
         div(class="event-popup event-popup-hidden" id="event-popup" onclick = "popupClicked()")
             div(class="name-of-event")
-                input(id="event-name-input")
+                input(id="event-name-input" placeholder="New Event")
                 div(class="circle-container")
                     div(class='circle event-popup-circle')
-                input(id="event-location-input")
+                input(id="event-location-input" placeholder="Location")
             div(class="event-details")
                 label all-day
                 input(id="all-day-toggle", type="checkbox")
@@ -67,14 +67,15 @@ body(onload = "init()")
                     option(value="2d") 2 days before 
                     option(value="at-time") At time of event 
                 label invitees
-                input(id="add-invitee" class="grid-col-span-3")
+                input(id="add-invitee" class="grid-col-span-3" placeholder="Add Invitees...")
                 label attachments 
                 a(href='index.pug') Add File... 
                 label url 
-                input(id="url" class="grid-col-span-3")
+                input(id="url" class="grid-col-span-3" placeholder="None")
                 label note 
-                input(id="note" class="grid-col-span-3")
+                textarea#note(name="note", cols="1", rows="3", class="grid-col-span-3", placeholder="None")
             div(class="cancel-ok") 
+                button(class="event-popup-hidden") Delete
                 button Cancel 
                 button OK
                     

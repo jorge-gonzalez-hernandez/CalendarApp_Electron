@@ -183,6 +183,7 @@ function openEventPopup(id){
 }
 /* closes the the popup to add an event */
 function closeEventPopup(){
+    console.log("closing event popup...");
     document.getElementById("event-popup").classList.add("event-popup-hidden");
     document.getElementById("popup-arrow").classList.add("event-popup-hidden");
 }
