@@ -275,7 +275,7 @@
 
 /*event popup*/
 .event-popup-hidden{
-    /*display: none !important;*/
+    display: none !important
 }
 
 .event-popup{

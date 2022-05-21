@@ -18,7 +18,7 @@ let currSelectedEvent = []; //stores a collection of currently selected events
 
 let calendarTypes = ['day', 'week', 'month']
 
-let eventCollection = {"School":{}, "Work":{}, "Home":{}}; //stores the entire collection of event // temporary
+
 
 let popupOnloadEventColor; //stores the color of the event to create based on the previous event color
 
@@ -26,6 +26,12 @@ let listOfCalendars = [{name: "School", color:"blue", checked: false},
                         {name: "Work", color:"red", checked: true},
                         {name:"Home", color:"white", checked: false}]; //stores a list of all created calendar, eg: School, Work, etc
     //{name: 'School', color: 'blue', checked: false}
+
+let testEvent = {fromYear: 2022, fromMonth: 5, fromDay: 21, fromHour: 12, fromMin: 30, 
+                toYear: 2022, toMonth: 5, toDay: 21, toHour: 13, toMin: 30, 
+                repeat: [], alert: [], invitees: [], url: "", note: ""};
+
+let eventCollection = {School:{testEvent}, Work:{}, Home:{}}; //stores the entire collection of event // temporary
 
 
 function init(){
@@ -38,6 +44,7 @@ function init(){
     document.getElementById("event-popup").addEventListener("click",popupClicked, false);
 
     setDefaultValueEventPopup();
+    showEventsOnCalendar();
 }
 
 function getMonthName(){
@@ -139,7 +146,9 @@ function unfocus(){
 
 //stores the amount of events for a given date
 let eventCounter = 1;
-function addEventToCalendar(id){
+function addEventToCalendar(id, eventInfo, eventName){
+    
+    console.log(id);
     unfocus();
     let div = document.createElement("div");
     div.setAttribute("id", id +"e"+eventCounter);
@@ -157,11 +166,24 @@ function addEventToCalendar(id){
     div.addEventListener("click",eventSelected, false);
     div.addEventListener("dragstart",dragStart, false);
 
+    let eventNameText = "New event";
+    let timeText = "12:00 PM";
+
+    if(eventInfo){
+        eventNameText =  eventName;
+        if(eventInfo.fromHour > 11){ //set AM
+            timeText = eventInfo.fromHour + ":" + eventInfo.fromMin + " AM";
+        }else{ //set PM
+            timeText = eventInfo.fromHour + ":" + eventInfo.fromMin + " PM";
+        }
+        
+    }
+
     let p = document.createElement("p");
-    p.innerText = "New Event";
+    p.innerText = eventNameText;
     p.setAttribute("class","event-name");
     let time = document.createElement("p");
-    time.innerText = "2:35 PM"; 
+    time.innerText = timeText; 
     time.setAttribute("class","event-time");
     let circle = document.createElement("div");
     circle.setAttribute("class","circle");
@@ -169,8 +191,30 @@ function addEventToCalendar(id){
     div.appendChild(p);
     div.appendChild(time);
     document.getElementById(id).appendChild(div);
-    openEventPopup(id +"e"+eventCounter, false);
+    if(!eventInfo){
+        openEventPopup(id +"e"+eventCounter, false);
+    }
+    
     eventCounter++;
+}
+
+function showEventsOnCalendar(){
+    eventCollection
+    for(let i = 0; i < Object.keys(eventCollection).length; i++){ //iterate through all calendar categories
+        let calendarName = Object.keys(eventCollection)[i];
+        console.log(calendarName);
+        let eventArr = Object.values(eventCollection)[i];
+        console.log(eventArr);
+        for(let j = 0; j < Object.keys(eventArr).length; j++){
+            let eventName = Object.keys(eventArr)[j];
+            console.log(eventName);
+            let eventInfo = Object.values(eventArr)[j]; 
+            console.log(eventInfo);
+            console.log(eventInfo.fromYear);
+            let dayId = "m"+(eventInfo.fromMonth - 1)+"d"+eventInfo.fromDay;
+            addEventToCalendar(dayId, eventInfo, eventName);
+        }
+    }
 }
 
 function eventDblClicked(e){
@@ -234,12 +278,11 @@ function timeChange(e){
 
 //in charge of changing the start and end of the event
 function updateEventTime(){
-    let timeFrom = timeStringToInt(document.getElementById("from-time").value);
-    let timeTo = timeStringToInt(document.getElementById("to-time").value);
-    let timeDiff = timeTo - timeFrom;
-    console.log(typeof(fromTime));
-    newTimeHour = fromTime.substring(0,2);//.slice(0, fromTime.length - 3);
-    newTimeMin = fromTime.substring(3,5);
+    let fromTime = timeStringToInt(document.getElementById("from-time").value); //new time from
+    let toTime = timeStringToInt(document.getElementById("to-time").value); //old time to
+    let timeDiff = toTime - fromTime;
+    console.log(fromTime);
+    toTime = toTime + timeDiff;
     //newTimeHour = parseInt(newTimeHour) + 1;
     document.getElementById("to-time").value = (newTimeHour + ":" + newTimeMin);
 }

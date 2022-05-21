@@ -42,13 +42,13 @@ body(onload = "init()")
                 label all-day
                 input(id="all-day-toggle", type="checkbox", onclick="allDayClicked()")
                 label(class="negative-bottom-margin") from
-                input(id="from-date" class="negative-bottom-margin")
+                input(id="from-date" class="negative-bottom-margin" type="date")
                 input(id="from-time" class="negative-bottom-margin" type="time" min="00:01" max="11:59" onchange="timeChange(event);")
                 //- select(class="meridiem" id="from-time-meridiem" class="negative-bottom-margin")
                 //-     option(value = "am") AM 
                 //-     option(value = "pm") PM 
                 label to
-                input(id="to-date")
+                input(id="to-date" type="date")
                 input(id="to-time"  type="time" min="00:01" max="23:59")
                 //- select(class="meridiem" id="to-time-meridiem")
                 //-     option(value = "am") AM 
