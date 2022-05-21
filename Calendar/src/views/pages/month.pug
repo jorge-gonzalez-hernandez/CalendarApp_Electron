@@ -3,28 +3,34 @@ html
         title Calendar App
         style
             include ../../CSS/month.css
-        script(src = "../../JS/month.js")
+        script(src = "../../JS/calendar.js")
 body(onload = "init()")
     //include ../partials/header
 
     div#main 
-        div(class="container")    
-            include ../partials/nav
-        div(class="container grid-col-span-3 flex")
-            div(class = "arrow arrow-left flex" onclick="showPrevMonth()")
-                img(src="../../data/left-arrow.png")
-            p(id = "month-id") 
-            div(class = "arrow arrow-right flex" onclick="showNextMonth()")
-                img(src="../../data/right-arrow.png")
-        div(class = "grid-container container grid-col-span-3")
-            p Sunday 
-            p Monday 
-            p Tuesday 
-            p Wednesday 
-            p Thursday 
-            p Friday 
-            p Saturday
-        div(id = "month-grid-container" class="container grid-col-span-3 calendar-container grid-container")
+        div(class = "page-name")
+            p Calendar
+        div(class="container list-of-calendars-container")
+            include ../partials/list-of-calendars
+        div(class="container header-container")
+            a(href="../pages/index.pug") Home 
+            div(class="flex")
+                div(class = "arrow arrow-left flex" onclick="showPrevMonth()")
+                    img(src="../../data/left-arrow.png")
+                p(id = "month-id") 
+                div(class = "arrow arrow-right flex" onclick="showNextMonth()")
+                    img(src="../../data/right-arrow.png")
+            a(href="../pages/tasks.pug") Tasks
+        div(class="container temp-container")
+            div(class = "grid-container")
+                p Sun
+                p Mon
+                p Tue 
+                p Wed 
+                p Thu
+                p Fri
+                p Sat
+            div(id = "month-grid-container" class="calendar-container grid-container")
         div(class="event-popup-hidden event-popup-arrow" id="popup-arrow")
         div(class="event-popup event-popup-hidden" id="event-popup" onclick = "popupClicked()")
             div(class="name-of-event")
@@ -37,18 +43,18 @@ body(onload = "init()")
                 input(id="all-day-toggle", type="checkbox", onclick="allDayClicked()")
                 label(class="negative-bottom-margin") from
                 input(id="from-date" class="negative-bottom-margin")
-                input(id="from-time" class="negative-bottom-margin")
-                select(class="meridiem" id="from-time-meridiem" class="negative-bottom-margin")
-                    option(value = "am") AM 
-                    option(value = "pm") PM 
+                input(id="from-time" class="negative-bottom-margin" type="time" min="00:01" max="11:59" onchange="timeChange(event);")
+                //- select(class="meridiem" id="from-time-meridiem" class="negative-bottom-margin")
+                //-     option(value = "am") AM 
+                //-     option(value = "pm") PM 
                 label to
                 input(id="to-date")
-                input(id="to-time")
-                select(class="meridiem" id="to-time-meridiem")
-                    option(value = "am") AM 
-                    option(value = "pm") PM 
+                input(id="to-time"  type="time" min="00:01" max="23:59")
+                //- select(class="meridiem" id="to-time-meridiem")
+                //-     option(value = "am") AM 
+                //-     option(value = "pm") PM 
                 label repeat
-                select(id="repeat-dd" class="grid-col-span-3")
+                select(id="repeat-dd" class="grid-col-span-2")
                     option(value="none") None
                     option(value="day") Every Day
                     option(value="week") Every Week 
@@ -56,7 +62,7 @@ body(onload = "init()")
                     option(value="year") Every Year 
                     option(value="custom") Custom...
                 label alert
-                select(id="alert-dd" class="grid-col-span-3")
+                select(id="alert-dd" class="grid-col-span-2")
                     option(value="none") None
                     option(value="5min") 5 minutes before 
                     option(value="15min") 15 minutes before 
@@ -67,16 +73,18 @@ body(onload = "init()")
                     option(value="2d") 2 days before 
                     option(value="at-time") At time of event 
                 label invitees
-                input(id="add-invitee" class="grid-col-span-3" placeholder="Add Invitees...")
+                input(id="add-invitee" class="grid-col-span-2" placeholder="Add Invitees...")
                 label attachments 
                 a(href='index.pug') Add File... 
                 label url 
-                input(id="url" class="grid-col-span-3" placeholder="None")
+                input(id="url" class="grid-col-span-2" placeholder="None")
                 label note 
-                textarea#note(name="note", cols="1", rows="3", class="grid-col-span-3", placeholder="None")
+                textarea#note(name="note", cols="1", rows="3", class="grid-col-span-2", placeholder="None")
             div(class="cancel-ok") 
                 button(class="event-popup-hidden") Delete
-                button Cancel 
+                button(onclick="closeEventPopup()") Cancel 
                 button OK
+        div(class="month-page-footer")
+            include ../partials/calendar-footer
                     
 

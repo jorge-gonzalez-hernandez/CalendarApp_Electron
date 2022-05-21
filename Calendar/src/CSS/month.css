@@ -31,27 +31,83 @@
     color: white;
     height: auto;
     background-color: rgb(21, 21, 21);
+
+
+    margin-inline: 10px;
+    border-inline: 1px solid grey;
+}
+
+.grid-container>p{
+    padding: 0;
+    margin: 0;
+    margin-top: 11px;
+    margin-left: 5px;
+}
+
+.temp-container{
+    grid-column: 2;
+    grid-row: 2;
+    
+    display: grid;
+    grid-template-rows: 30px auto;
+
 }
 
 #main {
+    margin: 0;
+    background-color: rgb(29, 29, 29);
+
     font-family: var(--font);
     user-select: none;
     height: 100%;
     display: grid;
-    grid-template-columns: 200px repeat(3, minmax(300px, 1fr));
-    grid-template-rows: 30px 40px auto;
+    grid-template-columns: 250px auto;
+    grid-template-rows: 30px auto 40px;
+}
+
+.grid-col-span-3{
+    grid-column: span 3;
+}
+
+.grid-col-span-2{
+    grid-column: span 2;
 }
 
 .calendar-container {
     grid-auto-rows: minmax(100px, auto);
 }
 
-.container:nth-child(1) {
-    grid-row: span 3;
+.page-name{
+    grid-row: 1;
+    grid-column: 1;
+    padding: 0;
+    border-right: 1px solid grey;
+    border-bottom: 1px solid grey;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.page-name>p{
+    margin: 0;
+    color: white;
 }
 
-.grid-col-span-3 {
-    grid-column: span 3;
+.header-container{
+    grid-column: 2;
+    border-bottom: 1px solid grey;
+    padding-inline: 10px;
+}
+
+.list-of-calendars-container{
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.month-page-footer{
+    grid-row: 3;
+    grid-column: span 2;
 }
 
 /*drop target*/
@@ -75,8 +131,6 @@
     color: white;
 }
 
-
-
 .not-current-month p {
     color: rgb(159, 159, 159);
 }
@@ -94,6 +148,39 @@
     margin: 5px;
 }
 
+.header-container{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-container>div{
+}
+
+.header-container>a{
+    color: white;
+    text-decoration: none;
+    padding: 0;
+}
+
+.header-container>a:link{
+    text-decoration: none;
+}
+
+.header-container>a:visited{
+    text-decoration: none;
+}
+
+.header-container>a:hover{
+    color: rgb(207, 201, 201);
+}
+
+.header-container>a:active{
+    text-decoration: none;
+}
+
+
 .flex {
     display: flex;
     flex-flow: row nowrap;
@@ -105,8 +192,10 @@
     color: white;
     font-size: 20px;
     padding: 0;
+    padding-top: 2px;
     text-align: center;
 }
+
 
 .flex * {
     padding-left: 10px;
@@ -186,7 +275,7 @@
 
 /*event popup*/
 .event-popup-hidden{
-    display: none !important;
+    /*display: none !important;*/
 }
 
 .event-popup{
@@ -302,9 +391,9 @@
 
     /*grid*/
     display: grid;
-    grid-template-columns: 35% 30% 15% 15%;
+    grid-template-columns: 35% 39% 21%;
     gap: 3px;
-    row-gap: 10px;
+    row-gap: 13px;
 }
 
 
@@ -315,7 +404,7 @@
 }
 
 .negative-bottom-margin{
-    margin-bottom: -7px;
+    margin-bottom: -9px;
 }
 
 
@@ -323,7 +412,24 @@
 .event-details>select{
     border-radius: 3px;
     background-color: rgb(51, 48, 48);
+    height: 22px;
 }
+
+.event-details>input{
+    height: 22px;
+}
+
+.event-details>input[type="time"]{
+    color: white;
+    font-family: var(--font);
+    padding-left: 2px;
+}
+
+.event-details>input[type="time"]::-webkit-calendar-picker-indicator{
+    background: none;
+    display: none;
+}
+
 
 .event-details>a{
     border: none;
@@ -402,4 +508,6 @@
 body {
     background-color: rgb(37, 37, 37);
     overflow-x: hidden;
+    padding: 0;
+    margin: 0;
 }

@@ -1,0 +1,54 @@
+/*List of calendars div on the left side of the calend*/
+
+
+.list-of-calendars-container{
+    background-color: rgb(50, 36, 25);
+    border-right: 1px solid grey;
+}
+
+.list-of-calendars-container *{
+    padding: 0;
+    margin: 0;
+    
+}
+
+.list-of-calendars{
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+
+.list-of-calendars>p{
+    color: white;
+}
+
+.individual-calendar-container{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    padding: 15px;
+
+    border-bottom: 2px solid grey;
+}
+
+.individual-calendar-container>label{
+    margin-left: 7px;
+    color: white;
+}
+
+.individual-calendar-circle{
+    margin-left: 10px;
+}
+
+.individual-calendar-circle:hover{
+    cursor: pointer;
+}
+
+.calendar-checkbox{
+    background-color: green;  
+}
+

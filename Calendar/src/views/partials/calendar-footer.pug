@@ -1,0 +1,17 @@
+html
+    head
+        title Calendar App
+        style
+            include ../../CSS/calendar-footer.css
+        //script(src = "../../JS/calendar.js")
+
+div(class='list-of-calendars-footer')
+    label Settings
+    label Edit
+div(class="calendar-footer")
+    label Go to today 
+    div(class="calendar-type-toggle")
+        button(onclick="calendarTypeToggle(this.id)" id = 'day') Day 
+        button(onclick="calendarTypeToggle(this.id)" id = 'week') Week 
+        button(onclick="calendarTypeToggle(this.id)" id = 'month') Month
+    label Add Event
