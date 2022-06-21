@@ -13,14 +13,14 @@ body(onload = "init()")
         div(class="container list-of-calendars-container")
             include ../partials/list-of-calendars
         div(class="container header-container")
-            a(href="index.pug") Home 
+            a(href="../pages/index.pug") Home 
             div(class="flex")
                 div(class = "arrow arrow-left flex" onclick="showPrevMonth()")
                     img(src="../../data/left-arrow.png")
                 p(id = "month-id") 
                 div(class = "arrow arrow-right flex" onclick="showNextMonth()")
                     img(src="../../data/right-arrow.png")
-            a(href="tasks.pug") Tasks
+            a(href="../pages/tasks.pug") Tasks
         div(class="container temp-container")
             div(class = "grid-container")
                 p Sun
@@ -30,10 +30,7 @@ body(onload = "init()")
                 p Thu
                 p Fri
                 p Sat
-            div(id = "month-grid-container" class="calendar-container grid-container")
         div(class="event-popup-container" id="event-popup-container")
             include event-popup
         div(class="month-page-footer")
             include ../partials/calendar-footer
-                    
-

@@ -1,0 +1,229 @@
+.event-popup-hidden{
+    display: none !important
+}
+
+.event-popup{
+    position: var(--event-popup-position);
+    top: var(--event-popup-top);
+    left: var(--event-popup-left);
+    border: 1px solid rgb(74, 74, 74);
+    border-radius: 5px;
+    width: var(--event-popup-width);
+    height: var(--event-popup-height);
+    background-color: var(--event-popup-bg-clr);
+    color: var(--event-popup-txt-clr);
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+
+.event-popup *{
+    background-color: var(--event-popup-bg-clr);
+    color: var(--event-popup-txt-clr);
+    border-radius: 2px;
+    border: var(--event-popup-elem-border);   
+}
+
+.event-popup *:focus{
+    outline: var(--elem-outline);
+}
+
+
+.event-popup>div{
+    margin-inline: 20px;
+    border: none;
+}
+
+.event-popup>div:nth-child(3){
+    margin-inline: 0;
+    border-top: var(--event-popup-elem-border);
+}
+
+
+
+.event-popup>div>label{
+    grid-column: 1;
+    text-align: right;
+    padding-right: 5px;
+}
+
+/*event-popup-arrow*/
+.event-popup-arrow{
+    position: var(--event-popup-arrow-position);
+    top: var(--event-popup-arrow-top);
+    left: var(--event-popup-arrow-left);
+    height: var(--event-popup-arrow-height);
+}
+
+.event-popup-arrow-left{
+    width: 0; 
+    height: 0; 
+    border-top: var(--event-popup-arrow);
+    border-bottom: var(--event-popup-arrow); 
+    
+    border-right:var(--event-popup-arrow-side); 
+}
+.event-popup-arrow-right{
+    width: 0; 
+    height: 0; 
+    border-top: var(--event-popup-arrow);
+    border-bottom: var(--event-popup-arrow);
+    
+    border-left: var(--event-popup-arrow-side);
+}
+
+/*top div*/
+.name-of-event{
+    margin-top: 20px;
+
+    display: grid;
+    grid-template-columns: auto 40px;
+    grid-template-rows: 40px 30px;
+}
+.name-of-event *{
+    margin: 2px;
+}
+
+#event-name-input{
+    padding: 2px;
+    font-size: 17px;
+}
+#event-location-input{
+    grid-column: span 2;
+}
+
+.event-popup-circle{
+    width: 7px;
+    height: 7px;
+    background-color: #153f84;
+    border-radius: 50%;
+}
+
+.circle-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle-container:hover{
+    cursor: pointer;
+}
+
+/*middle div*/
+.event-details{
+
+    /*grid*/
+    display: grid;
+    grid-template-columns: 35% 39% 21%;
+    gap: 3px;
+    row-gap: 13px;
+}
+
+
+.event-details>label{
+    grid-column: 1;
+    text-align: right;
+    padding-right: 5px;
+}
+
+.negative-bottom-margin{
+    margin-bottom: -9px;
+}
+
+
+
+.event-details>select{
+    border-radius: 3px;
+    background-color: rgb(51, 48, 48);
+    height: 22px;
+}
+
+.event-details>input{
+    height: 22px;
+}
+
+.event-details>input[type="time"]{
+    color: white;
+    font-family: var(--font);
+    padding-left: 2px;
+}
+
+.event-details>input[type="time"]::-webkit-calendar-picker-indicator{
+    background: none;
+    display: none;
+}
+
+
+.event-details>a{
+    border: none;
+    color:blueviolet;
+}
+
+    .event-details>a:link{
+        text-decoration: none;
+    }
+    .event-details>a:visited{
+        text-decoration: none;
+    }
+    .event-details>a:hover{
+        text-decoration: none;
+    }
+    .event-details>a:active{
+        text-decoration: none;
+    }
+
+.event-details>label{
+    border: none;
+}
+
+#note{
+    font-family: var(--font);
+    resize: none;
+}
+
+
+.all-day-selected{
+    display: none;
+}
+
+/*bottom div*/
+.cancel-ok{
+    padding: 15px;
+    font-family: var(--font);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+}
+
+.cancel-ok>button{
+    border: none;
+    font-size: 17px;
+    border-radius: 0;
+}
+
+.cancel-ok>button:focus{
+    outline: 0;
+}
+
+.cancel-ok>button:hover{
+    cursor: pointer;
+}
+
+.cancel-ok>button:nth-child(1){
+    color: rgb(222, 24, 24);
+}
+
+.cancel-ok>button:nth-child(2){
+    color: rgb(101, 142, 255);
+    margin-left: auto;
+    border-right: 1px rgb(65, 65, 65) solid;
+}
+
+.cancel-ok>button:nth-child(3){
+    color: rgb(101, 142, 255);
+    font-weight: bold;
+}

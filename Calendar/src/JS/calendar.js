@@ -18,7 +18,7 @@ let currSelectedEvent = []; //stores a collection of currently selected events
 
 let calendarTypes = ['day', 'week', 'month']
 
-
+let currSelectedCalenderType;
 
 let popupOnloadEventColor; //stores the color of the event to create based on the previous event color
 
@@ -33,7 +33,7 @@ let testEvent = {fromYear: 2022, fromMonth: 5, fromDay: 21, fromHour: 12, fromMi
 
 let eventCollection = {School:{testEvent}, Work:{}, Home:{}}; //stores the entire collection of event // temporary
 
-
+//month calendar init
 function init(){
     todayDate = new Date();
     currentShownDate = todayDate;
@@ -45,6 +45,7 @@ function init(){
 
     setDefaultValueEventPopup();
     showEventsOnCalendar();
+    currSelectedCalenderType = 'month';
 }
 
 function getMonthName(){
@@ -239,7 +240,6 @@ function openEventPopup(id, exist){
     setEventPopupLocation(document.getElementById(id).getBoundingClientRect(), document.getElementById(id).clientWidth);
     document.getElementById("event-popup").classList.remove("event-popup-hidden");
     document.getElementById("popup-arrow").classList.remove("event-popup-hidden");
-
     if(exist){ //event already exists -> show event's info
         console.log("Event exists");
     }else{ //new event is going to be created -> show default info
@@ -563,9 +563,12 @@ function changeCalendarColor(e){
 /* CALENDAR FOOTER / BOTTOM */
 function calendarTypeToggle(id){
     console.log(id);
-    document.getElementById("day").classList.remove("calendar-type-toggle-selected");
-    document.getElementById("week").classList.remove("calendar-type-toggle-selected");
-    document.getElementById("month").classList.remove("calendar-type-toggle-selected");
-    document.getElementById(id).classList.add("calendar-type-toggle-selected");
+    //document.getElementById("day").classList.toggle("calendar-type-toggle-selected");
+    //document.getElementById("week").classList.toggle("calendar-type-toggle-selected");
+    document.getElementById("month").classList.toggle("calendar-type-toggle-selected");
+}
+
+function showSelectedCalendarType(calendarType){
+
 }
 

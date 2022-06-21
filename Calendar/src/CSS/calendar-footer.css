@@ -51,7 +51,7 @@
     flex-flow: row nowrap;
 }
 
-.calendar-type-toggle>button{
+.calendar-type-toggle>a{
     border: 1px solid red;
     background-color: rgb(29, 29, 29);
     color: red;
@@ -60,20 +60,29 @@
     padding-block: 5px;
 }
 
-.calendar-type-toggle>button:hover{
+.calendar-type-toggle>a:hover{
     background-color: rgb(69, 12, 12);
     cursor: pointer;
 }
 
-.calendar-type-toggle>button:focus{
-    background-color: red;
-    color: white;
+.calendar-type-toggle .calendar-type-toggle-selected:hover{
+    background-color: blue;
 }
 
-.calendar-type-toggle>button:nth-child(1){
+.calendar-type-toggle-selected{
+    background-color: blue;
+    color: white;
+}
+/* 
+.calendar-type-toggle>a:focus{
+    background-color: red;
+    color: white;
+} */
+.calendar-type-toggle>a:nth-child(1){
     border-radius: 3px 0 0 3px;
 }
 
-.calendar-type-toggle>button:nth-child(3){
+.calendar-type-toggle>a:nth-child(3){
     border-radius: 0 3px 3px 0;
 }
+

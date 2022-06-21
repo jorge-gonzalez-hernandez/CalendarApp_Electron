@@ -1,0 +1,59 @@
+html
+    head
+        title Calendar App
+        style
+            include ../../CSS/event-popup.css
+body
+        div(class="event-popup-hidden event-popup-arrow" id="popup-arrow")
+        div(class="event-popup event-popup-hidden" id="event-popup" onclick = "popupClicked()")
+            div(class="name-of-event")
+                input(id="event-name-input" placeholder="New Event")
+                div(class="circle-container")
+                    div(class='circle event-popup-circle')
+                input(id="event-location-input" placeholder="Location")
+            div(class="event-details")
+                label all-day
+                input(id="all-day-toggle", type="checkbox", onclick="allDayClicked()")
+                label(class="negative-bottom-margin") from
+                input(id="from-date" class="negative-bottom-margin" type="date")
+                input(id="from-time" class="negative-bottom-margin" type="time" min="00:01" max="11:59" onchange="timeChange(event);")
+                //- select(class="meridiem" id="from-time-meridiem" class="negative-bottom-margin")
+                //-     option(value = "am") AM 
+                //-     option(value = "pm") PM 
+                label to
+                input(id="to-date" type="date")
+                input(id="to-time"  type="time" min="00:01" max="23:59")
+                //- select(class="meridiem" id="to-time-meridiem")
+                //-     option(value = "am") AM 
+                //-     option(value = "pm") PM 
+                label repeat
+                select(id="repeat-dd" class="grid-col-span-2")
+                    option(value="none") None
+                    option(value="day") Every Day
+                    option(value="week") Every Week 
+                    option(value="month") Every Month 
+                    option(value="year") Every Year 
+                    option(value="custom") Custom...
+                label alert
+                select(id="alert-dd" class="grid-col-span-2")
+                    option(value="none") None
+                    option(value="5min") 5 minutes before 
+                    option(value="15min") 15 minutes before 
+                    option(value="30min") 30 minutes before 
+                    option(value="1h") 1 hour before 
+                    option(value="2h") 2 hours before 
+                    option(value="1d") 1 day before 
+                    option(value="2d") 2 days before 
+                    option(value="at-time") At time of event 
+                label invitees
+                input(id="add-invitee" class="grid-col-span-2" placeholder="Add Invitees...")
+                label attachments 
+                a(href='index.pug') Add File... 
+                label url 
+                input(id="url" class="grid-col-span-2" placeholder="None")
+                label note 
+                textarea#note(name="note", cols="1", rows="3", class="grid-col-span-2", placeholder="None")
+            div(class="cancel-ok") 
+                button(class="event-popup-hidden") Delete
+                button(onclick="closeEventPopup()") Cancel 
+                button OK
